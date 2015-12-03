@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/TestGroupWidget/images">
+        <file>TestGroupWidgetWelcome.png</file>
+    </qresource>
+</RCC>

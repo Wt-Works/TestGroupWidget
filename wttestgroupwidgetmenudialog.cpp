@@ -47,7 +47,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QFile>
 #pragma GCC diagnostic pop
 
-ribi::WtTestGroupWidgetMenuDialog::WtTestGroupWidgetMenuDialog()
+ribi::tgrw::WtMenuDialog::WtMenuDialog()
 {
   {
     std::vector<std::string> image_names;
@@ -57,7 +57,7 @@ ribi::WtTestGroupWidgetMenuDialog::WtTestGroupWidgetMenuDialog()
     {
       if (!(QFile::exists(filename.c_str())))
       {
-        QFile f( (std::string(":/ToolTestGroupWidget/images/") + filename).c_str() );
+        QFile f( (std::string(":/TestGroupWidget/images/") + filename).c_str() );
         f.copy(filename.c_str());
       }
       if (!boost::filesystem::exists(filename.c_str()))
@@ -105,9 +105,9 @@ ribi::WtTestGroupWidgetMenuDialog::WtTestGroupWidgetMenuDialog()
   }
 }
 
-Wt::WWidget * ribi::WtTestGroupWidgetMenuDialog::CreateNewAboutDialog() const
+Wt::WWidget * ribi::tgrw::WtMenuDialog::CreateNewAboutDialog() const
 {
-  About a = TestGroupWidgetMenuDialog().GetAbout();
+  About a = MenuDialog().GetAbout();
   a.AddLibrary("Rainbow version: " + Rainbow::GetVersion());
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
   a.AddLibrary("WtGroupWidget version: " + WtGroupWidget::GetVersion());
@@ -116,14 +116,14 @@ Wt::WWidget * ribi::WtTestGroupWidgetMenuDialog::CreateNewAboutDialog() const
   return d;
 }
 
-Wt::WWidget * ribi::WtTestGroupWidgetMenuDialog::CreateNewMainDialog() const
+Wt::WWidget * ribi::tgrw::WtMenuDialog::CreateNewMainDialog() const
 {
-  WtTestGroupWidgetMainDialog * const d = new WtTestGroupWidgetMainDialog;
+  WtMainDialog * const d = new WtMainDialog;
   assert(d);
   return d;
 }
 
-Wt::WWidget * ribi::WtTestGroupWidgetMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::tgrw::WtMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);

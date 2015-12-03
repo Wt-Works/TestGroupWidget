@@ -31,10 +31,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 
 struct WtGroupWidget;
-//---------------------------------------------------------------------------
-struct WtTestGroupWidgetMainDialog : public Wt::WContainerWidget
+
+namespace tgrw {
+
+struct WtMainDialog : public Wt::WContainerWidget
 {
-  WtTestGroupWidgetMainDialog();
+  WtMainDialog();
 
   private:
   struct Ui
@@ -51,12 +53,13 @@ struct WtTestGroupWidgetMainDialog : public Wt::WContainerWidget
   void OnClicked();
 
   //From http://www.richelbilderbeek.nl/CppSeperateString.htm
-  static const std::vector<std::string> SeperateString(
+  static std::vector<std::string> SeperateString(
     const std::string& input,
     const char seperator);
 
 };
 
+} //~namespace tgrw
 } //~namespace ribi
 
 #endif // WTTESTGROUPWIDGETDIALOG_H

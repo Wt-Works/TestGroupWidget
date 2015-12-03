@@ -27,26 +27,26 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <boost/algorithm/string/split.hpp>
 #include <boost/foreach.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WLabel>
 #include <Wt/WLineEdit>
 #include <Wt/WPaintDevice>
 #include <Wt/WPainter>
 #include <Wt/WPushButton>
-//---------------------------------------------------------------------------
+
 #include "wtgroupwidget.h"
 #include "wttestgroupwidgetmaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::WtTestGroupWidgetMainDialog::Ui::Ui()
+ribi::tgrw::WtMainDialog::Ui::Ui()
   : m_edit(new Wt::WLineEdit),
     m_widget(new WtGroupWidget)
 {
 
 }
-//---------------------------------------------------------------------------
-ribi::WtTestGroupWidgetMainDialog::WtTestGroupWidgetMainDialog()
+
+ribi::tgrw::WtMainDialog::WtMainDialog()
   : ui{}
 {
   this->clear();
@@ -60,19 +60,19 @@ ribi::WtTestGroupWidgetMainDialog::WtTestGroupWidgetMainDialog()
   this->addWidget(new Wt::WBreak);
   {
     Wt::WPushButton * const button = new Wt::WPushButton("Create random groups",this);
-    button->clicked().connect(this,&ribi::WtTestGroupWidgetMainDialog::OnClicked);
+    button->clicked().connect(this,&ribi::tgrw::WtMainDialog::OnClicked);
   }
 
   ui.m_edit->resize(400,Wt::WLength::Auto);
-  ui.m_edit->changed().connect(this,&ribi::WtTestGroupWidgetMainDialog::OnChanged);
-  ui.m_edit->enterPressed().connect(this,&ribi::WtTestGroupWidgetMainDialog::OnChanged);
+  ui.m_edit->changed().connect(this,&ribi::tgrw::WtMainDialog::OnChanged);
+  ui.m_edit->enterPressed().connect(this,&ribi::tgrw::WtMainDialog::OnChanged);
   ui.m_edit->setText("1|2,3|4,5,6|7,8,9,10");
   ui.m_widget->resize(400,400);
 
   this->OnChanged();
 }
-//---------------------------------------------------------------------------
-void ribi::WtTestGroupWidgetMainDialog::OnChanged()
+
+void ribi::tgrw::WtMainDialog::OnChanged()
 {
   const std::vector<std::string> groups_str
     = SeperateString(ui.m_edit->text().toUTF8(),'|');
@@ -102,8 +102,8 @@ void ribi::WtTestGroupWidgetMainDialog::OnChanged()
   }
   ui.m_widget->SetIds(groups_ids);
 }
-//---------------------------------------------------------------------------
-void ribi::WtTestGroupWidgetMainDialog::OnClicked()
+
+void ribi::tgrw::WtMainDialog::OnClicked()
 {
   int id = 0;
   std::vector<std::vector<int> > v;
@@ -120,8 +120,8 @@ void ribi::WtTestGroupWidgetMainDialog::OnClicked()
   }
   ui.m_widget->SetIds(v);
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> ribi::WtTestGroupWidgetMainDialog::SeperateString(
+
+std::vector<std::string> ribi::tgrw::WtMainDialog::SeperateString(
   const std::string& input,
   const char seperator)
 {
@@ -131,4 +131,4 @@ const std::vector<std::string> ribi::WtTestGroupWidgetMainDialog::SeperateString
     boost::algorithm::token_compress_on);
   return v;
 }
-//---------------------------------------------------------------------------
+

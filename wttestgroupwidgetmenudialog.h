@@ -20,20 +20,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTTESTGROUPWIDGETMENUDIALOG_H
 #define WTTESTGROUPWIDGETMENUDIALOG_H
-//---------------------------------------------------------------------------
-#include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
-namespace ribi {
 
-struct WtTestGroupWidgetMenuDialog : public Wt::WContainerWidget
+#include <Wt/WContainerWidget>
+
+namespace ribi {
+namespace tgrw {
+
+struct WtMenuDialog : public Wt::WContainerWidget
 {
-  WtTestGroupWidgetMenuDialog();
+  WtMenuDialog();
   private:
   Wt::WWidget * CreateNewAboutDialog() const;
   Wt::WWidget * CreateNewMainDialog() const;
   Wt::WWidget * CreateNewWelcomeDialog() const;
 };
 
+} //~namespace tgrw
 } //~namespace ribi
 
 #endif // WTTESTGROUPWIDGETMENUDIALOG_H

@@ -23,11 +23,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
-#include "richelbilderbeekprogram.h"
 #include "trace.h"
 #include "testtimer.h"
 
-int ribi::TestGroupWidgetMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::tgrw::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -42,7 +41,7 @@ int ribi::TestGroupWidgetMenuDialog::ExecuteSpecific(const std::vector<std::stri
   return 1;
 }
 
-ribi::About ribi::TestGroupWidgetMenuDialog::GetAbout() const noexcept
+ribi::About ribi::tgrw::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -56,7 +55,7 @@ ribi::About ribi::TestGroupWidgetMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-ribi::Help ribi::TestGroupWidgetMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::tgrw::MenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -70,33 +69,25 @@ ribi::Help ribi::TestGroupWidgetMenuDialog::GetHelp() const noexcept
   );
 }
 
-boost::shared_ptr<const ribi::Program> ribi::TestGroupWidgetMenuDialog::GetProgram() const noexcept
+std::string ribi::tgrw::MenuDialog::GetVersion() const noexcept
 {
-  const boost::shared_ptr<const Program> p {
-    new ProgramTestGroupWidget
-  };
-  assert(p);
-  return p;
+  return "2.0";
 }
 
-std::string ribi::TestGroupWidgetMenuDialog::GetVersion() const noexcept
-{
-  return "1.4";
-}
-
-std::vector<std::string> ribi::TestGroupWidgetMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::tgrw::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2011-06-16: Version 1.0: initial version",
     "2011-06-26: Version 1.1: replaced Wt::WTimer by WtSafeTimer",
     "2011-06-30: Version 1.2: replaced WtSafeTimer by Wt::WPushButton",
     "2011-09-08: Version 1.3: added edit in website version",
-    "2013-11-05: version 1.4: conformized for ProjectRichelBilderbeekConsole"
+    "2013-11-05: version 1.4: conformized for ProjectRichelBilderbeekConsole",
+    "2015-12-03: version 2.0: moved to own GitHub",
   };
 }
 
 #ifndef NDEBUG
-void ribi::TestGroupWidgetMenuDialog::Test() noexcept
+void ribi::tgrw::MenuDialog::Test() noexcept
 {
   {
     static bool is_tested{false};
